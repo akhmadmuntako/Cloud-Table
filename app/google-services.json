@@ -1,0 +1,61 @@
+{
+  "project_info": {
+    "project_number": "537304395273",
+    "project_id": "firebase-cloudtable"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537304395273:android:3e13d76c79b42e32",
+        "android_client_info": {
+          "package_name": "com.example"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCC7L_HK-1mv9HXyts0WGiZSgl8-5ydX3Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537304395273:android:3cf26f90f11235da",
+        "android_client_info": {
+          "package_name": "com.example.cloudtable"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCC7L_HK-1mv9HXyts0WGiZSgl8-5ydX3Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
