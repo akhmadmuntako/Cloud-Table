@@ -35,7 +35,7 @@ public class NotificationUtils  {
 
 
         // notification icon
-        final int icon = R.mipmap.ic_launcher;
+        final int icon = R.mipmap.meja;
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         final PendingIntent resultPendingIntent =

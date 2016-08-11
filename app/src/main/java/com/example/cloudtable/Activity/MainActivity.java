@@ -4,9 +4,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Rect;
+import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,15 +16,14 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.cloudtable.Database.DatabaseHelper;
+import com.example.cloudtable.Model.Freegrid;
+import com.example.cloudtable.Model.PanningView;
 import com.example.cloudtable.Model.PositionProfider;
-import com.example.cloudtable.Model.Table;
 import com.example.cloudtable.Model.TableView;
 import com.example.cloudtable.R;
 import com.example.cloudtable.gcm.GcmIntentService;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.jraska.console.Console;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 ////        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-////        android.app.Notification notification = new android.app.Notification(R.drawable.ic_launcher,
+////        android.app.Notification notification = new android.app.Notification(R.drawable.meja,
 ////                "A New Message from Dipak Keshariya (Android Developer)!",
 ////                System.currentTimeMillis());
 ////
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 //        builder.setTicker("this is ticker text");
 //        builder.setContentTitle(notificationTitle);
 //        builder.setContentText(notificationMessage);
-//        builder.setSmallIcon(R.drawable.ic_launcher);
+//        builder.setSmallIcon(R.drawable.meja);
 //        builder.setContentIntent(pendingIntent);
 //        builder.setOngoing(true);
 ////        builder.setSubText("This is subtext...");   //API level 16
@@ -113,8 +113,72 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Initializing our broadcast receiver
-        register();
 
+        List<Rect> rects = new ArrayList<>();
+        Rect rect = new Rect(100, 100, 200, 200);
+        rects.add(rect);
+        rects.add(new Rect(150, 300, 250, 400));
+
+        rects.add(new Rect(300, 100, 800, 200));
+
+        final MyAdapter adapter = new MyAdapter();
+        adapter.setRects(rects);
+
+        PanningView scrollView = new PanningView(this);
+
+        final Freegrid freegrid = (Freegrid) findViewById(R.id.a);
+        freegrid.setAdapter(adapter);
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.HORIZONTAL);
+        View view = findViewById(R.id.main);
+
+        if(view.getParent()!=null)
+            ((ViewGroup)view.getParent()).removeView(view);
+
+        layout.addView(view, new LinearLayout.LayoutParams(1280,2400));
+        scrollView.addView(layout);
+        setContentView(scrollView);
+    }
+    class MyAdapter extends BaseAdapter implements PositionProfider {
+
+        List<Rect> rects;
+
+
+        public void setRects(List<Rect> dd) {
+            rects = dd;
+        }
+
+        @Override
+        public int getCount() {
+            return rects.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+            View v = inflater.inflate(R.layout.item, null, false);
+            return v;
+        }
+
+        @Override
+        public TableView getPositionTable(int position) {
+            return null;
+        }
+
+        @Override
+        public Rect getPositionRect(int position) {
+            return rects.get(position);
+        }
     }
 
     public void register() {

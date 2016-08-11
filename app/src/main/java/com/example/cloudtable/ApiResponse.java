@@ -1,6 +1,6 @@
 package com.example.cloudtable;
 
-import com.example.cloudtable.Model.Table;
+import com.example.cloudtable.Database.generator.Tables;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,13 +9,13 @@ import java.util.List;
  * Created by Lenovo on 08/08/2016.
  */
 public class ApiResponse {
-    List<Table> tables = new ArrayList<>();
+    List<Tables> tables = new ArrayList<>();
 
-    public List<Table> getTables() {
+    public List<Tables> getTables() {
         return tables;
     }
 
-    public void setTables(List<Table> tables) {
+    public void setTables(List<Tables> tables) {
         this.tables = tables;
     }
 }

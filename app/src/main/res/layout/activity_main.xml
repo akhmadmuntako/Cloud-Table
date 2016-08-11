@@ -14,7 +14,7 @@
 
     <com.example.cloudtable.Model.Freegrid
         android:id="@+id/a"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"

@@ -12,6 +12,7 @@ import android.util.Log;
  */
 // TODO: extend WakefulBroadcastReceiver
 public class GCMBroadcastReceiver extends WakefulBroadcastReceiver {
+
     private final String TAG = GCMBroadcastReceiver.class.getName();
 
     @Override

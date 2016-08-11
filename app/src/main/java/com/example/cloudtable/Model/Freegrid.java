@@ -1,23 +1,13 @@
 package com.example.cloudtable.Model;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.Toast;
-
-import com.example.cloudtable.Activity.MainActivity;
-import com.example.cloudtable.R;
-
-import java.util.ArrayList;
 
 
 /**
@@ -78,15 +68,18 @@ public class Freegrid extends FrameLayout {
             View v = adapter.getView(i, null, this);
             Rect rect = ((PositionProfider) adapter).getPositionRect(i);
             addView(v);
-            dispatchSetPressed(true);
-            LayoutParams lp = (LayoutParams) v.getLayoutParams();
-            lp.width = rect.width();
-            lp.height = rect.height();
-            v.setLayoutParams(lp);
-            v.setTranslationX(rect.left);
-            v.setTranslationY(rect.top);
-            v.setOnClickListener(localClickListener);
-            v.setOnLongClickListener(longClick);
+                dispatchSetPressed(true);
+                LayoutParams lp = (LayoutParams) v.getLayoutParams();
+                lp.width = rect.width();
+                lp.height = rect.height();
+                v.setLayoutParams(lp);
+                v.setTranslationX(rect.left);
+                v.setTranslationY(rect.top);
+                v.setOnClickListener(localClickListener);
+                v.setOnLongClickListener(longClick);
+            if (v instanceof TableView){
+                ((TableView) v).setDisplayingShapeName("meja " + i);
+            }
         }
     }
 

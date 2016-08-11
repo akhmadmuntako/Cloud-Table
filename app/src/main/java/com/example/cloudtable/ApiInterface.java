@@ -1,39 +1,45 @@
 package com.example.cloudtable;
 
-import com.example.cloudtable.Model.Table;
+import com.example.cloudtable.Database.generator.Tables;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 
 /**
  * Created by Lenovo on 08/08/2016.
  */
 public interface ApiInterface {
-    @POST("{mydevice}")
-    Call<ApiResponse> tables(@Path("mydevice") int device_id);
+    @FormUrlEncoded
+    @POST("mydevice")
+    Call<ApiResponse> getResponse(@Field("device_id") String device_id);
 
-    @POST("{choose_table}")
-    Call<Table> selectTable(@Path("choose_table") int table_id);
+    @FormUrlEncoded
+    @POST("choose_table")
+    Call<Tables> selectTable(@Field("table_id") int table_id);
 
-    @GET("current_table")
+    @GET("current_table:9000")
     Call<ApiResponse> tables();
 
     class Interface {
-
         private static ApiInterface service;
 
         public static ApiInterface buildRetrofitService() {
 
             if (service == null) {
+                Gson gson = new GsonBuilder()
+                        .setLenient()
+                        .create();
+
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("https://192.168.1.105/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                        .baseUrl("http://192.168.2.5/")
+                        .addConverterFactory(GsonConverterFactory.create(gson))
                         .build();
                 service = retrofit.create(ApiInterface.class);
                 return service;

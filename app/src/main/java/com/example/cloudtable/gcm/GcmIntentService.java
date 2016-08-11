@@ -48,7 +48,6 @@ public class GcmIntentService extends IntentService {
         registerGCM();
     }
 
-
     /**
      * Registering with GCM and obtaining the gcm registration id
      */
