@@ -1,0 +1,7 @@
+ip address server 192.168.2.5
+
+GCM
+server key
+AIzaSyCC7L_HK-1mv9HXyts0WGiZSgl8-5ydX3Q
+
+mobilesdk_app_id: 537304395273
