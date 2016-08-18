@@ -106,53 +106,6 @@ public class Freegrid extends FrameLayout {
     public void setOnItemClickListener(AdapterView.OnItemClickListener click) {
         clickListener = click;
     }
-
-//    public boolean createNewItem(final MainActivity.MyAdapter adapter, final ArrayList<Rect> rects) {
-//            final Dialog d = new Dialog(getContext(),0);
-//
-//                d.setContentView(R.layout.new_item);
-//                d.setTitle("Create new Item");
-//
-//                final EditText leftEdit = (EditText)d.findViewById(R.id.left);
-//                final EditText topEdit = (EditText)d.findViewById(R.id.top);
-//                final EditText rightEdit = (EditText)d.findViewById(R.id.right);
-//                final EditText buttomEdit = (EditText)d.findViewById(R.id.bottom);
-//                Button createButton = (Button) d.findViewById(R.id.create_button);
-//                Button cancelButton = (Button) d.findViewById(R.id.cancel_button);
-//                // if button create is clicked, create new item
-//                createButton.setOnClickListener(new OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        try {
-//                            int L = Integer.parseInt(String.valueOf(leftEdit.getText()));
-//                            int T = Integer.parseInt(String.valueOf(topEdit.getText()));
-//                            int R = Integer.parseInt(String.valueOf(rightEdit.getText()));
-//                            int B = Integer.parseInt(String.valueOf(buttomEdit.getText()));
-//                            if(R >L && B > T){
-//                            Rect rect = new Rect(L, T, R, B);
-//                            rects.add(rect);
-//                            adapter.setRects(rects);
-//                            adapter.unregisterDataSetObserver(dataSetObserver);
-//                            setAdapter(adapter);
-//                            d.dismiss();
-//                            }else {
-//                                Toast.makeText(getContext(),"Righ must bigger than Left and \n Bottom must bigger than Top",Toast.LENGTH_SHORT).show();
-//                            }
-//                        }catch (Exception e){
-//                            Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                    }
-//                });
-//                cancelButton.setOnClickListener(new OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        d.dismiss();
-//                    }
-//                });
-//                d.show();
-//        return true;
-//    }
 }
 
 

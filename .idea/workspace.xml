@@ -16,27 +16,9 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2aa28c3d-df85-4487-a508-84e43a9a6f36" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\android\KP\Zakuna\CloudTable\app-debug-unaligned.apk" afterPath="" />
-      <change type="DELETED" beforePath="D:\android\KP\Zakuna\CloudTable\app-release-unaligned.apk" afterPath="" />
-      <change type="DELETED" beforePath="D:\android\KP\Zakuna\CloudTable\app\src\main\java\com\example\cloudtable\Model\TableCustom.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app-debug.apk" afterPath="$PROJECT_DIR$/app-debug.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app-release.apk" afterPath="$PROJECT_DIR$/app/app-release.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/outputFileStates.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/ApiInterface.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/ApiInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/ApiResponse.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/ApiResponse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/gcm/GCMTokenRefreshListenerService.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/gcm/GCMTokenRefreshListenerService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/gcm/GcmIntentService.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/gcm/GcmIntentService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Activity/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/gcm/MyGcmPushReceiver.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/gcm/MyGcmPushReceiver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Activity/NotUpdateActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Activity/NotUpdateActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" id="2aa28c3d-df85-4487-a508-84e43a9a6f36" name="Default" comment="11/08/2016 part 2&#10;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/Freegrid.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/Freegrid.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/Table.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/Table.java" />
     </list>
     <ignored path="CloudTable.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,18 +52,31 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/Freegrid.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="80" column="68" selection-start-line="80" selection-start-column="68" selection-end-line="80" selection-end-column="68" />
+              <caret line="107" column="5" selection-start-line="107" selection-start-column="5" selection-end-line="107" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TableView.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/TableView.java">
+      <file leaf-file-name="NetworkServer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/NetworkServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.094444446">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state vertical-scroll-proportion="1.1777778">
+              <caret line="67" column="1" selection-start-line="67" selection-start-column="1" selection-end-line="67" selection-end-column="1" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Table.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/Table.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+              <folding>
+                <element signature="e#844#845#0" expanded="true" />
+                <element signature="e#877#878#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -2114,7 +2109,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/attrs.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/Table.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Database/DatabaseHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/PositionProfider.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Database/DaoGenerator.java" />
@@ -2124,7 +2118,6 @@
         <option value="$PROJECT_DIR$/greendao-gen/src/main/java/com/example/MainGenerator.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Database/generator/DaoMaster.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Database/generator/DaoSession.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/Freegrid.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/TableView.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/gcm/GCMBroadcastReceiver.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/NetworkService.java" />
@@ -2146,6 +2139,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/TableCustom.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/ApiResponse.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/ApiInterface.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/Freegrid.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/Table.java" />
       </list>
     </option>
   </component>
@@ -2785,7 +2780,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
+    <frame x="-7" y="0" width="1378" height="735" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2904,13 +2899,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.56557375">
           <caret line="80" column="19" selection-start-line="80" selection-start-column="19" selection-end-line="80" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/Table.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57781756">
-          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -3085,13 +3073,6 @@
         <state vertical-scroll-proportion="0.97540987">
           <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/NetworkServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -3272,14 +3253,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/Freegrid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="68" selection-start-line="80" selection-start-column="68" selection-end-line="80" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/ApiResponse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24727273">
@@ -3298,8 +3271,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/TableView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.094444446">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.80277777">
+          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/Freegrid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="107" column="5" selection-start-line="107" selection-start-column="5" selection-end-line="107" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/Model/Table.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+          <folding>
+            <element signature="e#844#845#0" expanded="true" />
+            <element signature="e#877#878#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/cloudtable/NetworkServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1777778">
+          <caret line="67" column="1" selection-start-line="67" selection-start-column="1" selection-end-line="67" selection-end-column="1" />
           <folding />
         </state>
       </provider>

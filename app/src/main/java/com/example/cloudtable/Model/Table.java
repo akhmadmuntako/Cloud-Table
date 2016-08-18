@@ -4,6 +4,7 @@ package com.example.cloudtable.Model;
 
 /**
  * Created by Lenovo on 08/08/2016.
+ * class to representing table
  */
 public class Table implements Serializable{
     String TableName;
