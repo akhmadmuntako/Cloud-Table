@@ -7,7 +7,6 @@ import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.example.cloudtable.Config;
 import com.example.cloudtable.R;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
@@ -21,6 +20,9 @@ public class GcmIntentService extends IntentService {
     //Constants for success and errors
     public static final String REGISTRATION_SUCCESS = "RegistrationSuccess";
     public static final String REGISTRATION_ERROR = "RegistrationError";
+    //Register token is also null
+    //we will get the token on successfull registration
+    String token = null;
 
 
     public GcmIntentService() {
@@ -30,22 +32,11 @@ public class GcmIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-//        String key = intent.getStringExtra(KEY);
-//        switch (key) {
-//            case SUBSCRIBE:
-//                // subscribe to a topic
-//                String topic = intent.getStringExtra(TOPIC);
-////                subscribeToTopic(topic);
-//                break;
-//            case UNSUBSCRIBE:
-//                String topic1 = intent.getStringExtra(TOPIC);
-////                unsubscribeFromTopic(topic1);
-//                break;
-//            default:
-//                // if key is not specified, register with GCM
-////                registerGCM();
-//        }
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         registerGCM();
+
     }
 
     /**
@@ -55,9 +46,7 @@ public class GcmIntentService extends IntentService {
         //Registration complete intent initially null
         Intent registrationComplete = null;
 
-        //Register token is also null
-        //we will get the token on successfull registration
-        String token = null;
+
         try {
             //Creating an instanceid
             InstanceID instanceID = InstanceID.getInstance(getApplicationContext());
@@ -69,7 +58,7 @@ public class GcmIntentService extends IntentService {
             //You can also extend the app by storing the token in to your server
             Log.w("GCMRegIntentService", "token:" + token);
 
-            saveRegistrationToken(token);
+//            saveRegistrationToken(token);
 
             //on registration complete creating intent with success
             registrationComplete = new Intent(REGISTRATION_SUCCESS);
@@ -86,12 +75,7 @@ public class GcmIntentService extends IntentService {
         LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
     }
 
-    private void saveRegistrationToken(final String token){
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPreferences.edit().putString("Token", token).apply();
-        // pass along this data
-        sendRegistrationToServer(token);
-    }
+
 
     private void sendRegistrationToServer(final String token) {
         // Send the registration token to our server

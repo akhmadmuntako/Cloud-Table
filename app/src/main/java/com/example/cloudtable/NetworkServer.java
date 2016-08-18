@@ -2,7 +2,7 @@ package com.example.cloudtable;
 
 import android.util.Log;
 
-import com.example.cloudtable.Activity.ListTableActivity;
+import com.example.cloudtable.Activity.MainActivity;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -19,7 +19,7 @@ public class NetworkServer implements Runnable {
      */
     public NetworkServer() {
         this(9000);
-        ip = ListTableActivity.getIP();
+        ip = MainActivity.getIP();
     }
 
     /**

@@ -22,7 +22,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.ListTableActivity">
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,6 +30,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Activity.NotUpdateActivity"/>
         <!--<activity android:name=".Activity.MainActivity"/>-->
 
         <!-- START Added for GCM -->

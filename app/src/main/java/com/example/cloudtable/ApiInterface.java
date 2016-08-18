@@ -29,6 +29,7 @@ public interface ApiInterface {
 
     class Interface {
         private static ApiInterface service;
+        private static String BASE_URL = "http://192.168.2.6/";
 
         public static ApiInterface buildRetrofitService() {
 
@@ -38,7 +39,7 @@ public interface ApiInterface {
                         .create();
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.2.5/")
+                        .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .build();
                 service = retrofit.create(ApiInterface.class);

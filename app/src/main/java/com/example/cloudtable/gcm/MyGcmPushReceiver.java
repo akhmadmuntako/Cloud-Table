@@ -10,14 +10,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
-import com.example.cloudtable.Activity.ListTableActivity;
+import com.example.cloudtable.Activity.MainActivity;
+import com.example.cloudtable.Activity.NotUpdateActivity;
 import com.example.cloudtable.ApiResponse;
-import com.example.cloudtable.Database.DatabaseHelper;
 import com.example.cloudtable.Database.generator.DaoMaster;
 import com.example.cloudtable.Database.generator.DaoSession;
 import com.example.cloudtable.Database.generator.Tables;
 import com.example.cloudtable.Database.generator.TablesDao;
-import com.example.cloudtable.Model.Table;
 import com.example.cloudtable.R;
 import com.google.android.gms.gcm.GcmListenerService;
 import com.google.gson.Gson;
@@ -30,57 +29,48 @@ import java.util.List;
  */
 public class MyGcmPushReceiver extends GcmListenerService {
     private static final String TAG = MyGcmPushReceiver.class.getSimpleName();
-    ArrayList<Table> tables = new ArrayList<>();
-    DatabaseHelper handler;
+    List<Tables> tables = new ArrayList<>();
 
     @Override
     public void onMessageReceived(String s, Bundle bundle) {
-
-        if (!bundle.isEmpty()) {
-            saveMessage(bundle.getString("message"));
-        }
-
         //Getting the message from the bundle
         String message = bundle.getString("message");
         //Displaying a notification with the message
-        sendNotification(message);
+        sendNotification(bundle,message);
         super.onMessageReceived(s, bundle);
     }
 
-    public void saveMessage(String message){
+    public boolean saveMessage(String message){
+        //open databse
         DaoMaster.DevOpenHelper ex_database_helper_obj = new DaoMaster.DevOpenHelper(getApplicationContext(), "CloudTable.sqlite", null);
         SQLiteDatabase ex_db= ex_database_helper_obj.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster( ex_db);
         DaoSession daoSession = daoMaster.newSession();
         TablesDao tablesDao = daoSession.getTablesDao();
-//            handler = new DatabaseHelper(getApplicationContext());
-        Gson gson = new Gson();
-        ApiResponse api = gson.fromJson(message, ApiResponse.class);
-        List<Tables> tables = api.getTables();
+        //upgrade table
+        ex_database_helper_obj.onUpgrade(ex_db,1,2);
 
-        for (Tables t : tables){
-            tablesDao.insert(t);
+        //parse json message
+        Gson gson = new Gson();
+        try {
+            ApiResponse api = gson.fromJson(message, ApiResponse.class);
+            tables = api.getTables();
+
+            for (Tables t : tables){
+                //insert each Tables to SQLite
+                tablesDao.insert(t);
+            }
+        }catch (Exception e){
+            Intent intent = new Intent(this, MainActivity.class);
+            return false;
         }
 
-//            JSONObject object = new JSONObject(message);
-//            JSONArray array = object.getJSONArray("tables");
-//            for (int i = 0; i < array.length(); i++) {
-//                JSONObject jsonObjectTable = array.getJSONObject(i);
-//                int tableId = jsonObjectTable.getInt("table_id");
-//                String tableName = jsonObjectTable.getString("table_name");
-//                int tableLeft = jsonObjectTable.getInt("table_left");
-//                int tableTop = jsonObjectTable.getInt("table_top");
-//                int tableRight = jsonObjectTable.getInt("table_right");
-//                int tableBottom = jsonObjectTable.getInt("table_bottom");
-//
-//                Tables table = new Tables(tableId,tableName,tableLeft,tableTop,tableRight,tableBottom);
-////                handler.insertTable(table);// Inserting into DB
-//                tablesDao.insert(table);
-//            }
+        //close all
         daoSession.clear();
         ex_db.close();
         ex_database_helper_obj.close();
 
+        return true;
     }
 
 
@@ -88,11 +78,25 @@ public class MyGcmPushReceiver extends GcmListenerService {
      * Showing notification with text only
      */
     //This method is generating a notification and displaying the notification
-    private void sendNotification(String message) {
-        Intent intent = new Intent(this, ListTableActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    private void sendNotification(Bundle bundle,String message) {
+
+        Intent ok = new Intent(this, MainActivity.class);
+        ok.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        Intent bad = new Intent(getApplicationContext(), NotUpdateActivity.class);
+        bad.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        bad.putExtra("message",message);
+
         int requestCode = 0;
-        PendingIntent pendingIntent = PendingIntent.getActivity(MyGcmPushReceiver.this, requestCode, intent, PendingIntent.FLAG_ONE_SHOT);
+        Boolean cek = saveMessage(message);
+        PendingIntent pendingIntent = null;
+
+        if(cek){
+            pendingIntent = PendingIntent.getActivity(MyGcmPushReceiver.this, requestCode, ok, PendingIntent.FLAG_ONE_SHOT);
+        }else{
+            pendingIntent = PendingIntent.getActivity(MyGcmPushReceiver.this, requestCode, bad, PendingIntent.FLAG_ONE_SHOT);
+        }
+
         Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder noBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.meja)
@@ -100,10 +104,15 @@ public class MyGcmPushReceiver extends GcmListenerService {
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent)
                 .setSound(sound)
-                .setVibrate(new long[1000]);
+                .setVibrate(new long[] { 1000, 1000});
+
+        if (!bundle.isEmpty()) {
+            saveMessage(bundle.getString("message"));
+        }
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0, noBuilder.build()); //0 = ID of notification
     }
+
 
 }

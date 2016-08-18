@@ -2,6 +2,7 @@ package com.example.cloudtable;
 
 import android.util.Log;
 
+import com.example.cloudtable.Activity.MainActivity;
 import com.example.cloudtable.Database.generator.Tables;
 import com.google.gson.Gson;
 
@@ -15,6 +16,7 @@ import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.net.Socket;
+import java.util.List;
 
 /**
  * Directs every client request and returns any results
@@ -41,9 +43,12 @@ public class RequestHandler implements Runnable
     public RequestHandler(Socket socket) throws IOException {
         this.socket = socket;
         Log.w("masuk", String.valueOf(socket.getInputStream()));
-        Tables tables = new Tables(1,"satu",100,100,200,200);
+
+        List<Tables> tables = MainActivity.getTables();
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setTables(tables);
         Gson gson = new Gson();
-        data = gson.toJson(tables);
+        data = gson.toJson(apiResponse);
     }
 
     @Override
