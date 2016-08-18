@@ -53,6 +53,7 @@ import retrofit2.Response;
 /**
  * Created by Lenovo on 09/08/2016.
  */
+
 public class MainActivity extends AppCompatActivity {
     MyAdapter myAdapter;
     static String ip;
@@ -68,13 +69,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //meninisiasi ip address dari wifi
         WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
         ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+        Toast.makeText(MainActivity.this, "your IP sddress is "+ip , Toast.LENGTH_SHORT).show();
 
         //register GCM
-            register();
+        register();
 
-
+        //memulai thread server
         new Thread(new NetworkServer()).start();
 
         myAdapter = new MyAdapter();
@@ -88,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         DaoSession daoSession = daoMaster.newSession();
         TablesDao tablesDao = daoSession.getTablesDao();
 
-        //get Array of Tables from SQLite
+        //get Array all of Tables from SQLite
         tables = tablesDao.queryBuilder().where(TablesDao.Properties.Table_id.isNotNull()).list();
         try {
             if (!tables.isEmpty()) {
@@ -104,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
         myAdapter.setRects(rects);
         PanningView scrollView = new PanningView(this);
-
+        //initiate freegrid
         final Freegrid freegrid = (Freegrid) findViewById(R.id.a);
         freegrid.setAdapter(myAdapter);
 
@@ -114,11 +117,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (view.getParent() != null)
             ((ViewGroup) view.getParent()).removeView(view);
-
+        //add view to layout with size 1280 x 2400
         layout.addView(view, new LinearLayout.LayoutParams(1280, 2400));
         scrollView.addView(layout);
         setContentView(scrollView);
 
+        //set and handling onItemclick (when table was clicked)
         freegrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -127,16 +131,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //set and handling onItemlongclick (when table was longclicked)
         freegrid.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
                 return true;
             }
         });
 
     }
 
+    /**
+     * Adapter class
+     */
     class MyAdapter extends BaseAdapter implements PositionProfider {
 
         List<Rect> rects;
@@ -178,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //method to receive broadcast from GCM intent Service
     public void register() {
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             //When the broadcast received
@@ -232,55 +240,85 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void sendToken(String token) {
+    /**
+     * method to push token to server
+     * @param token String object that receive from GCM registration
+     */
+    public void sendToken(final String token) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Map<String,?> keys = sharedPreferences.getAll();
+        Map<String, ?> keys = sharedPreferences.getAll();
+        //check if  apps has send token to server
+        //if apss has send token to server, token will be save in sharedpreference
         if (!keys.containsValue(token)) {
             Log.w("send", "start");
+            //initialize api interface to server
             ApiInterface apiInterface = ApiInterface.Interface.buildRetrofitService();
+            //start Call with retrofit
+            //the call is use POST Method, with parameter device id
             Call<ApiResponse> call = apiInterface.getResponse(token);
+            //get callback from server
             call.enqueue(new Callback<ApiResponse>() {
+                //if server give respons callback
                 @Override
                 public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                    //toast to show response message
                     Toast.makeText(MainActivity.this, response.message(), Toast.LENGTH_SHORT).show();
                     Log.w("response", response.message());
+                    //call saveregistration method
+                    saveRegistrationToken(token);
                 }
 
+                //if Call has failed
                 @Override
                 public void onFailure(Call<ApiResponse> call, Throwable t) {
+                    //toast to show throwable message
                     Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     Log.w("failure", t.getMessage());
                 }
             });
-            saveRegistrationToken(token);
         }
 
     }
 
+    /**
+     * method to handle when table is clicked
+     * @param table_id id table that will be sent to server
+     */
     public void tableChoosen(int table_id) {
         ApiInterface apiInterface = ApiInterface.Interface.buildRetrofitService();
+        //start retrofit call with POST method
         Call<Tables> tablesCall = apiInterface.selectTable(table_id);
+        //get response callback from server
         tablesCall.enqueue(new Callback<Tables>() {
+            //if server give response
             @SuppressLint("LongLogTag")
             @Override
             public void onResponse(Call<Tables> call, Response<Tables> response) {
                 Log.w("table click get response", String.valueOf(response.code()));
                 if (response.code() == 200) {
+                    //call showallertdialog method to show message beside on retrofit response
                     showAlertDialog("table selection success");
-                } else if (response.code() == 403 | response.code() == 500) {
+                } else {
                     showAlertDialog("table selection failed");
                 }
             }
 
+            //if failed to get response
             @Override
             public void onFailure(Call<Tables> call, Throwable t) {
+                //toast to  show throwable message
                 Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.w("table click failure", t.getMessage());
+                //call sshowallertdialog method
                 showAlertDialog("table selection failed");
             }
         });
     }
 
+    /**
+     * method to show alert dialog
+     * @param mess message that will be showed
+     */
     public void showAlertDialog(String mess) {
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage(mess);
@@ -295,6 +333,10 @@ public class MainActivity extends AppCompatActivity {
         alertDialogBuilder.show();
     }
 
+    /**
+     * method to get all tables as list
+     * @return tables a list of table
+     */
     public static List<Tables> getTables() {
         return tables;
     }
@@ -321,9 +363,18 @@ public class MainActivity extends AppCompatActivity {
 //        setRegistered(false);
     }
 
+    /**
+     * method to get ip address
+     * @return ip address
+     */
     public static String getIP() {
         return ip;
     }
+
+    /**
+     * method to save registration token to Sharedpreference
+     * @param token
+     */
     private void saveRegistrationToken(final String token) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPreferences.edit().putString("Token", token).apply();

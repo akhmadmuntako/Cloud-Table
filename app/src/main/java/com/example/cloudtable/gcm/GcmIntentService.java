@@ -32,9 +32,7 @@ public class GcmIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
+        //call registerGCM method
         registerGCM();
 
     }
@@ -76,7 +74,10 @@ public class GcmIntentService extends IntentService {
     }
 
 
-
+    /**
+     * send token to server
+     * @param token string token
+     */
     private void sendRegistrationToServer(final String token) {
         // Send the registration token to our server
         // to keep it in MySQL

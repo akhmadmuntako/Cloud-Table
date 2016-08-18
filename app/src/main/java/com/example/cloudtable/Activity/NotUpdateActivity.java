@@ -10,6 +10,7 @@ import com.example.cloudtable.R;
 
 /**
  * Created by Lenovo on 10/08/2016.
+ * this class to displayed message from server in other layout
  */
 public class NotUpdateActivity extends AppCompatActivity {
     @Override
